@@ -1,89 +1,91 @@
-const CDN_BASE = "https://cdn.poehali.dev/templates/meet-jack"
+import Icon from "@/components/ui/icon"
+
+const GAME_NAME = "НАЗВАНИЕ ИГРЫ"
 
 export default function Footer() {
   return (
-    <footer className="w-full px-6 relative py-[0] mt-28 h-auto mb-0 bg-card">
-      <div className="absolute top-8 right-6 text-accent text-2xl">+</div>
-      <div className="absolute top-1/2 right-12 text-accent text-lg transform -translate-y-1/2">*</div>
-      <div className="absolute bottom-12 right-20 text-accent text-xl">+</div>
-      <div className="absolute top-16 right-32 text-accent text-sm">*</div>
-      <div className="absolute bottom-8 right-8 text-accent text-lg">*</div>
+    <footer className="w-full bg-card border-t border-border mt-0">
+      <div className="max-w-[1200px] mx-auto px-6 py-16">
 
-      <div className="max-w-[1200px] mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="flex-1 max-w-lg mt-8">
-            <h2
-              className="text-foreground text-4xl md:text-5xl mb-8 leading-[3.5rem] md:leading-[4rem] font-semibold text-center md:text-left mt-0"
-              style={{ fontFamily: "var(--font-montserrat)" }}
-            >
-              Все связано воедино.
-            </h2>
-
-            <div className="space-y-4 text-foreground">
-              <div className="flex items-start gap-3">
-                <span className="text-accent mt-1">*</span>
-                <p className="text-sm">Макс верит, что вселенная - и каждая база данных - построена на связях.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-accent mt-1">*</span>
-                <p className="text-sm">Его миссия - помогать людям проектировать с ясностью и воображением.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden md:flex flex-1 justify-end items-center relative">
-            <div className="relative">
-              <img
-                src={`${CDN_BASE}/jack-footer-ufo-new.png`}
-                alt="Макс в НЛО"
-                width={400}
-                height={300}
-                className="object-contain mb-0 mt-4"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="md:hidden flex justify-center mt-12">
-          <div className="relative">
-            <img
-              src={`${CDN_BASE}/jack-footer-ufo-new.png`}
-              alt="Макс в НЛО"
-              width={500}
-              height={375}
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-        <div id="contact" className="w-full px-6 py-16 flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 md:gap-0 border-t border-border mt-16">
-          <div className="flex flex-col md:flex-row gap-2 text-center md:text-left">
-            <h2 className="text-foreground font-mono text-xl font-bold">Познакомься с Максом!</h2>
-            <p className="text-foreground font-mono font-normal text-base">Твой дружелюбный гид в мире баз данных</p>
-          </div>
-
-          <a href="mailto:hello@example.com">
-            <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg whitespace-nowrap hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300 font-mono flex items-center gap-2">
-              Связаться с Максом
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M7 7h10v10M7 17L17 7" />
-              </svg>
+        {/* CTA повтор */}
+        <div id="contact" className="bg-accent/5 border border-accent/20 rounded-4xl p-8 md:p-12 text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-montserrat)" }}>
+            Готов освоить бизнес?
+          </h2>
+          <p className="text-muted-foreground font-mono text-sm mb-6">
+            Присоединяйся к 10 000+ предпринимателей, которые уже играют
+          </p>
+          <a href="#pricing">
+            <button className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-bold font-mono text-base hover:scale-105 hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300 inline-flex items-center gap-2">
+              Купить {GAME_NAME}
+              <Icon name="ArrowRight" size={18} />
             </button>
           </a>
         </div>
 
-        <div className="w-full px-6 py-4 border-t border-border flex md:flex-row items-center justify-between gap-2 flex-row">
-          <p className="text-muted-foreground text-sm font-mono">2025 Макс</p>
-          <p className="text-muted-foreground text-sm font-mono">poehali.dev</p>
+        {/* Нижний футер */}
+        <div className="flex flex-col md:flex-row items-start justify-between gap-8 pb-8 border-b border-border">
+          <div>
+            <div className="text-accent font-bold text-xl mb-2" style={{ fontFamily: "var(--font-montserrat)" }}>
+              {GAME_NAME}
+            </div>
+            <p className="text-muted-foreground font-mono text-sm max-w-xs">
+              Оффлайн бизнес-симуляция для предпринимателей и менеджеров
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-12">
+            <div>
+              <h4 className="text-foreground font-mono text-sm font-bold mb-3">Навигация</h4>
+              <ul className="space-y-2">
+                {[["О игре", "#about"], ["Цены", "#pricing"], ["FAQ", "#faq"], ["Контакты", "#contact"]].map(([label, href]) => (
+                  <li key={label}>
+                    <a href={href} className="text-muted-foreground font-mono text-sm hover:text-accent transition-colors">{label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-foreground font-mono text-sm font-bold mb-3">Контакты</h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-muted-foreground font-mono text-sm">
+                  <Icon name="Mail" size={13} className="text-accent" />
+                  hello@example.com
+                </li>
+                <li className="flex items-center gap-2 text-muted-foreground font-mono text-sm">
+                  <Icon name="Phone" size={13} className="text-accent" />
+                  +7 (000) 000-00-00
+                </li>
+                <li className="flex items-center gap-2 text-muted-foreground font-mono text-sm">
+                  <Icon name="MapPin" size={13} className="text-accent" />
+                  Россия, доставка везде
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1 text-muted-foreground font-mono text-xs">
+              <Icon name="Lock" size={11} className="text-accent" />
+              HTTPS защита
+            </div>
+            <div className="flex items-center gap-1 text-muted-foreground font-mono text-xs">
+              <Icon name="Shield" size={11} className="text-accent" />
+              Возврат 14 дней
+            </div>
+            <div className="flex items-center gap-1 text-muted-foreground font-mono text-xs">
+              <Icon name="CreditCard" size={11} className="text-accent" />
+              Тбанк
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <p className="text-muted-foreground text-xs font-mono">2026 {GAME_NAME}</p>
+            <a href="#" className="text-muted-foreground text-xs font-mono hover:text-accent transition-colors">Политика конфиденциальности</a>
+            <a href="#" className="text-muted-foreground text-xs font-mono hover:text-accent transition-colors">Оферта</a>
+          </div>
         </div>
       </div>
     </footer>

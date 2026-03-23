@@ -1,27 +1,57 @@
 import { Button } from "@/components/ui/button"
-import { ArrowUpRight } from "lucide-react"
-
-const CDN_BASE = "https://cdn.poehali.dev/templates/meet-jack"
+import Icon from "@/components/ui/icon"
+import { useState } from "react"
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/0 backdrop-blur-sm">
-      <div className="flex items-center justify-between px-6 py-4 text-transparent">
-        <div className="flex items-center gap-3">
-          <img src={`${CDN_BASE}/logo.svg`} alt="Logo" width={100} height={32} className="h-auto" />
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-4">
+        <div className="flex items-center gap-2">
+          <span className="text-accent font-bold text-xl" style={{ fontFamily: "var(--font-montserrat)" }}>
+            НАЗВАНИЕ ИГРЫ
+          </span>
         </div>
 
-        <div className="flex items-center gap-2">
-          <a href="#contact">
-            <Button
-              className="bg-primary text-primary-foreground rounded-full px-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
-              style={{ paddingLeft: "24px", paddingRight: "16px" }}
+        <nav className="hidden md:flex items-center gap-8">
+          {["Главная", "О игре", "Цены", "FAQ", "Контакты"].map((item, i) => (
+            <a
+              key={item}
+              href={["#hero", "#about", "#pricing", "#faq", "#contact"][i]}
+              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-mono"
             >
-              Связаться с Максом <ArrowUpRight className="ml-1 h-4 w-4" />
+              {item}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <a href="#pricing">
+            <Button className="bg-primary text-primary-foreground rounded-full px-6 font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]">
+              Купить <Icon name="ArrowUpRight" size={16} className="ml-1" />
             </Button>
           </a>
+          <button className="md:hidden text-foreground" onClick={() => setMenuOpen(!menuOpen)}>
+            <Icon name={menuOpen ? "X" : "Menu"} size={24} />
+          </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="md:hidden bg-card border-t border-border px-6 py-4 flex flex-col gap-4">
+          {["Главная", "О игре", "Цены", "FAQ", "Контакты"].map((item, i) => (
+            <a
+              key={item}
+              href={["#hero", "#about", "#pricing", "#faq", "#contact"][i]}
+              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-mono"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   )
 }
